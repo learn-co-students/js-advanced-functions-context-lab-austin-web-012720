@@ -96,7 +96,7 @@ const findEmployeeByFirstName = function(records, firstName) {
 
 const calculatePayroll = function(records) {
     return records.reduce(function(memo, record) {
-        return memo + allWagesFor.call(record);
+        return memo + allWagesFor(record);
     }, 0);
 }
 
