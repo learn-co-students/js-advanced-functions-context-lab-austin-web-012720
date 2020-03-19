@@ -1,4 +1,69 @@
 /* Your Code Here */
+function createEmployeeRecord(employeeArray) {
+    return {
+        firstName: employeeArray[0],
+        familyName: employeeArray[1],
+        title: employeeArray[2],
+        payPerHour: employeeArray[3],
+        timeInEvents: [],
+        timeOutEvents: []
+    }
+}
+
+function createEmployeeRecords(data){
+    return data.map(detail => {
+       return createEmployeeRecord(detail)
+    })
+}
+ function createTimeInEvent(dateStamp) {
+     let [date, time] = dateStamp.split(' ')
+    
+     this.timeInEvents.push({
+         type: "TimeIn",
+         hour: parseInt(time, 10),
+         date
+     })
+     return this
+ }
+
+ function createTimeOutEvent(datestamp) {
+     let [date,time] = datestamp.split(' ')
+
+     this.timeOutEvents.push({
+         type: "TimeOut",
+         hour: parseInt(time,10),
+         date
+     })
+     return this
+ }
+
+ function hoursWorkedOnDate(date){
+     let inTime = this.timeInEvents.find(event => {
+         return event.date === date
+     })
+     let outTime = this.timeOutEvents.find(event => {
+         return event.date === date
+     })
+     return (outTime.hour - inTime.hour) / 100
+ }
+
+ function wagesEarnedOnDate(date) {
+     let wage = hoursWorkedOnDate.call(this, date) * this.payPerHour
+     return parseFloat(wage.toString())
+ }
+
+ function findEmployeeByFirstName(srcArray, firstName) {
+     return srcArray.find(rec => {
+         return rec.firstName === firstName
+     })
+ }
+
+ function calculatePayroll(arrayOfEmployeeRecords) {
+     return arrayOfEmployeeRecords.reduce((memo, rec) =>{
+         return memo + allWagesFor.call(rec)
+     }, 0)
+ }
+
 
 /*
  We're giving you this function. Take a look at it, you might see some usage
